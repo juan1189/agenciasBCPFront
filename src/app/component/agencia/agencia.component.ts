@@ -9,13 +9,19 @@ import {AgenciaService} from '../../service/agencia.service';
 })
 export class AgenciaComponent implements OnInit {
 
-  agencias: Agencia[];
+  agencias: Agencia[] = [];
 
   constructor(private agenciaService: AgenciaService) { }
 
   ngOnInit() {
     this.agenciaService.getAll().subscribe(
       (result: any) => {
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < result.content.length ; i++) {
+          const agencia = result.content[i] as Agencia;
+          this.agencias.push(agencia);
+        }
+
         console.log(result);
       },
       error => {

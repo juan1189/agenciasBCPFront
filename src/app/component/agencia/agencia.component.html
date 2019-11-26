@@ -1,1 +1,24 @@
-<p>agencia works!</p>
+<p-table [value]="agencias">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Agencia</th>
+      <th>Direccion</th>
+      <th>Provincia</th>
+      <th>Departamento</th>
+      <th>Direccion</th>
+      <th>Latitud</th>
+      <th>Longitud</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-agencia>
+    <tr>
+      <td>{{agencia.nombre}}</td>
+      <td>{{agencia.distrito}}</td>
+      <td>{{agencia.provincia}}</td>
+      <td>{{agencia.departamento}}</td>
+      <td>{{agencia.direccion}}</td>
+      <td>{{agencia.latitud}}</td>
+      <td>{{agencia.longitud}}</td>
+    </tr>
+  </ng-template>
+</p-table>

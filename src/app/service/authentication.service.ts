@@ -9,7 +9,7 @@ import {AgenciaService} from './agencia.service';
 })
 export class AuthenticationService {
 
-  baseUrl = 'http://localhost:8090/api/v1';
+  baseUrl = 'http://localhost:8085/api/v1';
 
   constructor(private http: HttpClient) { }
 

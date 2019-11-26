@@ -9,17 +9,13 @@ import {UserAuthenticate} from '../../model/userAuthenticate';
 })
 export class AgenciaService {
 
-  baseUrl = 'http://localhost:8090/api/v1';
+  baseUrl = 'http://localhost:8085/api/v1';
   token = '';
   user: UserAuthenticate;
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   getAll(): Observable<any> {
-
-    generarToken()
-
-
     return this.http.get(this.baseUrl + '/agencias/listar', this.jwt());
 
   }
@@ -34,7 +30,7 @@ export class AgenciaService {
   private generarToken() {
     this.user = new UserAuthenticate('admin', 'admin');
 
-    return Observable.authenticationService.crearToken(this.user)
+    this.authenticationService.crearToken(this.user)
       .subscribe(
         (result) => {
           this.token = result.body.jwt;
@@ -49,13 +45,10 @@ export class AgenciaService {
   }
 
   private jwt() {
-    this.generarToken()
-      .subscribe(result => {
-        // code to execute after the response arrived comes here
-      });
+    this.generarToken();
 
-    const token = this.token;
-    console.log("Token:" + token)
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDgzNDI0NSwiaWF0IjoxNTc0Nzk4MjQ1fQ.mut402abHYCILp7e5tbTTMiD5QuHa8_fCGeN9hvLEfQ';
+    console.log('Token:' + this.token)
     if (token) {
       return this.createRequestOptions(token);
     }
